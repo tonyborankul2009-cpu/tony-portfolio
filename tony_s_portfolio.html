@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony — Digital Designer & Student</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        graphite: {
+                            900: '#070708',
+                            800: '#0f0f12',
+                            700: '#18181c',
+                            600: '#222228',
+                            500: '#32323b',
+                        },
+                        accent: {
+                            burgundy: '#9f1239',
+                            burgundyGlow: '#be123c',
+                            emerald: '#10b981',
+                            emeraldGlow: '#059669'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            '0%': { opacity: '0.4' },
+                            '100%': { opacity: '0.8' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #070708;
+            color: #f4f4f5;
+            overflow-x: hidden;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070708;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222228;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #32323b;
+        }
+        .glass-panel {
+            background: rgba(15, 15, 18, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(24, 24, 28, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            border-style: solid;
+            border-color: rgba(159, 18, 57, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(159, 18, 57, 0.2);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .burgundy-gradient-text {
+            background: linear-gradient(135deg, #fb7185 0%, #e11d48 50%, #9f1239 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body class="bg-[#070708] text-zinc-100 antialiased selection:bg-rose-900 selection:text-white">
+
+    <!-- Floating Navbar -->
+    <header class="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6">
+        <nav class="max-w-5xl mx-auto glass-panel rounded-full px-4 sm:px-6 py-3 flex items-center justify-between shadow-2xl shadow-black/60">
+            <a href="#hero" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-rose-900 via-rose-700 to-emerald-600 flex items-center justify-center font-bold text-white text-sm tracking-tighter group-hover:scale-105 transition-transform">
+                    T
+                </div>
+                <span class="font-semibold text-sm tracking-tight text-white">Tony <span class="text-zinc-400 font-normal">/ Design</span></span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center gap-1 text-sm font-medium text-zinc-400">
+                <a href="#about" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-colors">About</a>
+                <a href="#services" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-colors">Services</a>
+                <a href="#projects" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-colors">Work</a>
+                <a href="#toolkit" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-colors">Toolkit</a>
+                <a href="#currently" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-colors">Currently</a>
+                <a href="#university" class="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-colors">Tourism</a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-3">
+                <a href="#contact" class="bg-rose-900 hover:bg-rose-800 text-white text-xs font-semibold px-4 py-2 rounded-full transition-all shadow-lg shadow-rose-950/40 active:scale-95 border border-rose-700/40">
+                    Let's talk
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-[#070708]/95 backdrop-blur-2xl flex flex-col justify-center px-8 transition-all duration-300 opacity-0 pointer-events-none md:hidden">
+        <button id="mobile-menu-close" class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        <div class="flex flex-col gap-6 text-xl font-medium">
+            <a href="#about" class="mobile-link text-zinc-300 hover:text-rose-400 transition-colors">About</a>
+            <a href="#services" class="mobile-link text-zinc-300 hover:text-rose-400 transition-colors">Services</a>
+            <a href="#projects" class="mobile-link text-zinc-300 hover:text-rose-400 transition-colors">Selected Work</a>
+            <a href="#toolkit" class="mobile-link text-zinc-300 hover:text-rose-400 transition-colors">Toolkit</a>
+            <a href="#currently" class="mobile-link text-zinc-300 hover:text-rose-400 transition-colors">Currently</a>
+            <a href="#university" class="mobile-link text-zinc-300 hover:text-rose-400 transition-colors">Tourism × Digital</a>
+            <a href="#contact" class="mobile-link mt-4 bg-rose-900 text-white text-center py-3 rounded-xl font-semibold shadow-lg shadow-rose-950/40 border border-rose-700/40">Contact me</a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 bg-grid-pattern overflow-hidden">
+        <!-- Background Ambient Glow (Burgundy + Emerald) -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] bg-rose-950/30 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-emerald-950/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <!-- Left Info -->
+            <div class="lg:col-span-7 flex flex-col items-start text-left">
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs font-medium text-zinc-300 mb-6 border border-white/10">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 absolute"></span>
+                    <span class="ml-1 text-emerald-400 font-semibold">Online</span>
+                    <span class="text-zinc-400">• Currently learning & building</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-4">
+                    Hi, I'm <span class="burgundy-gradient-text">Tony.</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl text-zinc-300 font-medium mb-3">
+                    17 y/o designer from Kazakhstan creating clean digital experiences.
+                </p>
+
+                <p class="text-zinc-400 text-base sm:text-lg mb-8 max-w-xl leading-relaxed">
+                    I design interfaces, build websites and explore the intersection of UX, visuals and technology.
+                </p>
+
+                <!-- Badges List -->
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-rose-400">UX/UI</span>
+                    <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-emerald-400">Web Design</span>
+                    <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-zinc-300">Student</span>
+                    <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-zinc-300">Kazakhstan 🇰🇿</span>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap items-center gap-4">
+                    <a href="#projects" class="group bg-rose-900 hover:bg-rose-800 text-white font-medium px-6 py-3 rounded-xl transition-all shadow-xl shadow-rose-950/40 flex items-center gap-2 border border-rose-700/40">
+                        View my work
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#contact" class="glass-card hover:bg-white/10 text-white font-medium px-6 py-3 rounded-xl transition-all">
+                        Contact me
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Interactive SaaS Preview Visual Card -->
+            <div class="lg:col-span-5 relative">
+                <div class="glass-panel p-6 rounded-3xl relative overflow-hidden shadow-2xl border border-white/10 group animate-float">
+                    <div class="absolute inset-0 bg-gradient-to-br from-rose-950/20 via-transparent to-emerald-950/20 pointer-events-none"></div>
+                    
+                    <!-- SaaS Window Header -->
+                    <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-rose-700/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-600/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-emerald-600/80"></div>
+                        </div>
+                        <div class="text-xs font-mono text-zinc-400 bg-white/5 px-3 py-1 rounded-full border border-white/5">
+                            tony-workspace.ui
+                        </div>
+                    </div>
+
+                    <!-- Mini UI Mockup Content -->
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-zinc-400 font-mono">POSITIONING</span>
+                                <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Active</span>
+                            </div>
+                            <div class="text-sm font-semibold text-white">Student. Designer. Future digital creator.</div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                                <div class="text-[10px] text-zinc-400 font-mono">BASED IN</div>
+                                <div class="text-xs font-medium text-white mt-1">Almaty, KZ</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                                <div class="text-[10px] text-zinc-400 font-mono">FOCUS</div>
+                                <div class="text-xs font-medium text-white mt-1">UX/UI & Web</div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-gradient-to-r from-rose-950/40 to-emerald-950/30 border border-rose-900/40 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-rose-900/40 flex items-center justify-center text-rose-400">
+                                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-medium text-white">Clean Aesthetics</div>
+                                    <div class="text-[10px] text-zinc-400">Minimalist systems</div>
+                                </div>
+                            </div>
+                            <span class="text-xs font-mono text-emerald-400">v2.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 px-4 sm:px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-mono text-rose-400 uppercase tracking-widest">About Me</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">A little about me.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-zinc-300 text-base sm:text-lg leading-relaxed">
+                    <p>
+                        I'm Tony, a 17-year-old university student based in Kazakhstan. I study Tourism at Kazakh Ablai Khan University of International Relations and World Languages.
+                    </p>
+                    <p>
+                        Outside university, I explore UX/UI design and web development. I enjoy turning simple ideas into clean interfaces and functional websites.
+                    </p>
+                    <p class="text-zinc-400 text-sm">
+                        I'm still at the beginning of my journey — and that's exactly what makes every project an opportunity to learn something new.
+                    </p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-2xl border border-white/10 text-center">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">17</div>
+                        <div class="text-xs font-mono text-zinc-400">Years old</div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-white/10 text-center">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-rose-400 mb-1">01</div>
+                        <div class="text-xs font-mono text-zinc-400">University</div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-white/10 text-center">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 mb-1">02+</div>
+                        <div class="text-xs font-mono text-zinc-400">Design directions</div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-white/10 text-center">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">∞</div>
+                        <div class="text-xs font-mono text-zinc-400">Ideas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT I DO SECTION -->
+    <section id="services" class="py-24 px-4 sm:px-6 relative bg-[#0f0f12]/50 border-y border-white/5">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">Capabilities</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">What I can do</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-rose-950/40 border border-rose-900/40 flex items-center justify-center text-rose-400 mb-6 group-hover:bg-rose-900 group-hover:text-white transition-all">
+                            <i data-lucide="layout" class="w-6 h-6"></i>
+                        </div>
+                        <div class="text-xs font-mono text-zinc-500 mb-2">01</div>
+                        <h3 class="text-xl font-bold text-white mb-3">UX/UI Design</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            Basic interface design, wireframes, user flows and clean visual systems.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-zinc-500 font-mono">
+                        <span>Figma & systems</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-zinc-500 group-hover:text-rose-400 transition-colors"></i>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-950/40 border border-emerald-900/40 flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-800 group-hover:text-white transition-all">
+                            <i data-lucide="globe" class="w-6 h-6"></i>
+                        </div>
+                        <div class="text-xs font-mono text-zinc-500 mb-2">02</div>
+                        <h3 class="text-xl font-bold text-white mb-3">Web Design</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            Modern landing pages and simple responsive websites with a focus on visual clarity.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-zinc-500 font-mono">
+                        <span>HTML / CSS / JS</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-zinc-500 group-hover:text-emerald-400 transition-colors"></i>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-zinc-800/60 border border-zinc-700/50 flex items-center justify-center text-zinc-300 mb-6 group-hover:bg-zinc-700 group-hover:text-white transition-all">
+                            <i data-lucide="cpu" class="w-6 h-6"></i>
+                        </div>
+                        <div class="text-xs font-mono text-zinc-500 mb-2">03</div>
+                        <h3 class="text-xl font-bold text-white mb-3">Prototyping</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed">
+                            Turning ideas into interactive concepts and testing how a product could work.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-zinc-500 font-mono">
+                        <span>Interactive flows</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-zinc-500 group-hover:text-zinc-300 transition-colors"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-24 px-4 sm:px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs font-mono text-rose-400 uppercase tracking-widest">Portfolio</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Selected work</h2>
+                </div>
+                <p class="text-zinc-400 text-sm mt-2 md:mt-0 max-w-sm">
+                    A few things I've designed, built or explored. (Concept projects)
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8">
+                <!-- Project 1 -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/10 grid grid-cols-1 lg:grid-cols-12 group">
+                    <div class="lg:col-span-7 bg-gradient-to-br from-rose-950/40 to-[#18181c] p-8 flex items-center justify-center relative overflow-hidden min-h-[280px]">
+                        <div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
+                        <div class="glass-panel p-6 rounded-2xl w-full max-w-md relative z-10 border border-white/10 group-hover:scale-105 transition-transform duration-500">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono text-rose-400">TravelApp.ui</span>
+                                <span class="text-[10px] bg-rose-950/60 text-rose-300 px-2 py-0.5 rounded border border-rose-900/50">Concept</span>
+                            </div>
+                            <div class="h-28 bg-rose-950/20 rounded-xl mb-4 flex items-center justify-center border border-rose-900/30 text-rose-400 font-mono text-xs">
+                                [ Interactive Mobile UI Wireframe ]
+                            </div>
+                            <div class="flex items-center justify-between text-xs text-zinc-400">
+                                <span>UX / UI Design</span>
+                                <span class="text-white font-mono">01 / 03</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-xs font-mono text-rose-400">Concept Project</span>
+                                <span class="text-xs text-zinc-500">•</span>
+                                <span class="text-xs font-mono text-zinc-400">UX/UI</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Travel App Concept</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                                UX/UI concept for a modern travel application focusing on seamless booking and destination discovery.
+                            </p>
+                        </div>
+                        <button onclick="openModal('project1')" class="inline-flex items-center gap-2 text-sm font-semibold text-rose-400 hover:text-rose-300 group-hover:translate-x-1 transition-all">
+                            View project <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/10 grid grid-cols-1 lg:grid-cols-12 group">
+                    <div class="lg:col-span-7 bg-gradient-to-br from-emerald-950/30 to-[#18181c] p-8 flex items-center justify-center relative overflow-hidden min-h-[280px]">
+                        <div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
+                        <div class="glass-panel p-6 rounded-2xl w-full max-w-md relative z-10 border border-white/10 group-hover:scale-105 transition-transform duration-500">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono text-emerald-400">TourismLanding.web</span>
+                                <span class="text-[10px] bg-emerald-950/60 text-emerald-300 px-2 py-0.5 rounded border border-emerald-900/50">Concept</span>
+                            </div>
+                            <div class="h-28 bg-emerald-950/20 rounded-xl mb-4 flex items-center justify-center border border-emerald-900/30 text-emerald-400 font-mono text-xs">
+                                [ Clean Landing Page Mockup ]
+                            </div>
+                            <div class="flex items-center justify-between text-xs text-zinc-400">
+                                <span>Web Design</span>
+                                <span class="text-white font-mono">02 / 03</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-xs font-mono text-emerald-400">Concept Project</span>
+                                <span class="text-xs text-zinc-500">•</span>
+                                <span class="text-xs font-mono text-zinc-400">Web Design</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Tourism Landing Page</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                                A clean landing page concept for a travel brand combining university insights with digital presentation.
+                            </p>
+                        </div>
+                        <button onclick="openModal('project2')" class="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 group-hover:translate-x-1 transition-all">
+                            View project <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/10 grid grid-cols-1 lg:grid-cols-12 group">
+                    <div class="lg:col-span-7 bg-gradient-to-br from-zinc-800/40 to-[#18181c] p-8 flex items-center justify-center relative overflow-hidden min-h-[280px]">
+                        <div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
+                        <div class="glass-panel p-6 rounded-2xl w-full max-w-md relative z-10 border border-white/10 group-hover:scale-105 transition-transform duration-500">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono text-zinc-300">SaaS-Dashboard.io</span>
+                                <span class="text-[10px] bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded border border-zinc-700">Concept</span>
+                            </div>
+                            <div class="h-28 bg-zinc-800/40 rounded-xl mb-4 flex items-center justify-center border border-zinc-700/50 text-zinc-300 font-mono text-xs">
+                                [ SaaS Dashboard Layout ]
+                            </div>
+                            <div class="flex items-center justify-between text-xs text-zinc-400">
+                                <span>UI Systems</span>
+                                <span class="text-white font-mono">03 / 03</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-xs font-mono text-zinc-400">Concept Project</span>
+                                <span class="text-xs text-zinc-500">•</span>
+                                <span class="text-xs font-mono text-zinc-400">SaaS UI</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Personal Dashboard</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                                A SaaS-style dashboard interface exploring layout, hierarchy and minimalist user interaction.
+                            </p>
+                        </div>
+                        <button onclick="openModal('project3')" class="inline-flex items-center gap-2 text-sm font-semibold text-zinc-300 hover:text-white group-hover:translate-x-1 transition-all">
+                            View project <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MY TOOLKIT SECTION -->
+    <section id="toolkit" class="py-24 px-4 sm:px-6 relative bg-[#0f0f12]/50 border-y border-white/5">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">Stack</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Tools I use</h2>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <!-- Tool 1 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-3 group-hover:border-rose-500/50 group-hover:bg-rose-950/30 transition-all">
+                        <i data-lucide="figma" class="w-6 h-6 text-rose-400"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-white">Figma</div>
+                    <div class="text-[10px] text-zinc-500 font-mono mt-0.5">Design & UI</div>
+                </div>
+
+                <!-- Tool 2 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-3 group-hover:border-emerald-500/50 group-hover:bg-emerald-950/30 transition-all">
+                        <i data-lucide="code" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-white">HTML</div>
+                    <div class="text-[10px] text-zinc-500 font-mono mt-0.5">Markup</div>
+                </div>
+
+                <!-- Tool 3 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-3 group-hover:border-rose-500/50 group-hover:bg-rose-950/30 transition-all">
+                        <i data-lucide="layout-template" class="w-6 h-6 text-rose-400"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-white">CSS</div>
+                    <div class="text-[10px] text-zinc-500 font-mono mt-0.5">Tailwind & Styles</div>
+                </div>
+
+                <!-- Tool 4 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-3 group-hover:border-emerald-500/50 group-hover:bg-emerald-950/30 transition-all">
+                        <i data-lucide="terminal" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-white">JavaScript</div>
+                    <div class="text-[10px] text-zinc-500 font-mono mt-0.5">Interactions</div>
+                </div>
+
+                <!-- Tool 5 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-3 group-hover:border-rose-500/50 group-hover:bg-rose-950/30 transition-all">
+                        <i data-lucide="file-code" class="w-6 h-6 text-rose-400"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-white">VS Code</div>
+                    <div class="text-[10px] text-zinc-500 font-mono mt-0.5">Editor</div>
+                </div>
+
+                <!-- Tool 6 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-3 group-hover:border-emerald-500/50 group-hover:bg-emerald-950/30 transition-all">
+                        <i data-lucide="git-branch" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-white">GitHub</div>
+                    <div class="text-[10px] text-zinc-500 font-mono mt-0.5">Version Control</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRENTLY SECTION -->
+    <section id="currently" class="py-24 px-4 sm:px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-mono text-rose-400 uppercase tracking-widest">Roadmap</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Currently exploring</h2>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl border border-white/10 space-y-6">
+                <div class="flex items-center justify-between pb-4 border-b border-white/5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-2.5 h-2.5 rounded-full bg-rose-700"></div>
+                        <span class="text-sm font-semibold text-white">Changelog & Learning Focus</span>
+                    </div>
+                    <span class="text-xs font-mono text-zinc-500">2026 Q1/Q2</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+                        <div class="text-xs text-rose-400 font-mono mb-1">01</div>
+                        <div class="text-sm font-medium text-white">UX/UI</div>
+                        <div class="text-xs text-zinc-400 mt-1">Deepening user research & visual rhythm</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+                        <div class="text-xs text-emerald-400 font-mono mb-1">02</div>
+                        <div class="text-sm font-medium text-white">Web development</div>
+                        <div class="text-xs text-zinc-400 mt-1">Building responsive Tailwind layouts</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+                        <div class="text-xs text-rose-400 font-mono mb-1">03</div>
+                        <div class="text-sm font-medium text-white">Design systems</div>
+                        <div class="text-xs text-zinc-400 mt-1">Creating reusable UI component libraries</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+                        <div class="text-xs text-emerald-400 font-mono mb-1">04</div>
+                        <div class="text-sm font-medium text-white">Interaction design</div>
+                        <div class="text-xs text-zinc-400 mt-1">Micro-animations & seamless transitions</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+                        <div class="text-xs text-zinc-300 font-mono mb-1">05</div>
+                        <div class="text-sm font-medium text-white">AI tools</div>
+                        <div class="text-xs text-zinc-400 mt-1">Leveraging AI for rapid prototyping</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UNIVERSITY SECTION -->
+    <section id="university" class="py-24 px-4 sm:px-6 relative bg-[#0f0f12]/50 border-y border-white/5">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">Perspective</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Tourism × Digital</h2>
+            </div>
+
+            <div class="glass-card p-8 sm:p-10 rounded-3xl border border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-4">
+                    <p class="text-zinc-300 text-base sm:text-lg leading-relaxed">
+                        Studying Tourism at Kazakh Ablai Khan University of International Relations and World Languages gives me a different perspective on digital products.
+                    </p>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Travel is all about experiences, guidance, and intuitive navigation — and good digital products are too. Understanding user journeys in tourism directly influences how I architect digital user experiences.
+                    </p>
+                    <div class="pt-2 flex items-center gap-3 text-xs font-mono text-zinc-400">
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Almaty, Kazakhstan</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Kaz Ablai Khan Uni</span>
+                    </div>
+                </div>
+
+                <!-- Minimalist Route / Map Visual Animation -->
+                <div class="lg:col-span-5 bg-[#070708]/90 p-6 rounded-2xl border border-white/10 relative overflow-hidden flex flex-col items-center justify-center min-h-[220px]">
+                    <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+                    <div class="relative z-10 w-full space-y-4">
+                        <div class="flex items-center justify-between text-xs font-mono text-zinc-400">
+                            <span>ROUTE_MAP // KZ</span>
+                            <span class="text-emerald-400 animate-pulse">Active</span>
+                        </div>
+                        <div class="relative flex items-center justify-between px-4 py-6">
+                            <div class="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-0.5 bg-gradient-to-r from-rose-900 via-emerald-600 to-rose-800"></div>
+                            <div class="w-4 h-4 rounded-full bg-rose-800 relative z-10 shadow-lg shadow-rose-950/60 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-white"></div>
+                            </div>
+                            <div class="w-3 h-3 rounded-full bg-emerald-500 relative z-10 shadow-md shadow-emerald-950/60"></div>
+                            <div class="w-4 h-4 rounded-full bg-rose-700 relative z-10 shadow-lg shadow-rose-950/60 flex items-center justify-center">
+                                <div class="w-2 h-2 rounded-full bg-white"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-[11px] font-mono text-zinc-500">
+                            <span>Almaty (Origin)</span>
+                            <span>UX / UI Journey</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 px-4 sm:px-6 relative">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="text-xs font-mono text-rose-400 uppercase tracking-widest">Get in touch</span>
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-white mt-3 mb-4">Let's build something.</h2>
+            <p class="text-zinc-400 text-base sm:text-lg mb-10 max-w-lg mx-auto">
+                Have an idea, project or just want to say hi? My inbox is always open.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+                <a href="https://www.instagram.com/borankul__t?stkn=NGQ1YzdtbDlweHBk&utm_source=qr" target="_blank" class="glass-card hover:bg-white/10 px-6 py-3.5 rounded-xl font-medium text-white flex items-center gap-2 border border-white/10 transition-all">
+                    <i data-lucide="instagram" class="w-4 h-4 text-rose-400"></i>
+                    Instagram
+                </a>
+                <a href="https://t.me/Tonylev09" target="_blank" class="glass-card hover:bg-white/10 px-6 py-3.5 rounded-xl font-medium text-white flex items-center gap-2 border border-white/10 transition-all">
+                    <i data-lucide="send" class="w-4 h-4 text-emerald-400"></i>
+                    Telegram
+                </a>
+                <a href="mailto:Tonyborankul2009@Gmail.com" class="glass-card hover:bg-white/10 px-6 py-3.5 rounded-xl font-medium text-white flex items-center gap-2 border border-white/10 transition-all">
+                    <i data-lucide="mail" class="w-4 h-4 text-rose-400"></i>
+                    Email
+                </a>
+            </div>
+
+            <div>
+                <button onclick="openContactModal()" class="group bg-rose-900 hover:bg-rose-800 text-white font-semibold px-8 py-4 rounded-2xl transition-all shadow-xl shadow-rose-950/40 inline-flex items-center gap-3 border border-rose-700/40">
+                    Start a conversation
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="py-12 px-4 sm:px-6 border-t border-white/5 bg-[#070708] text-center">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
+            <div>
+                Tony © 2026 • Designed & built by Tony.
+            </div>
+            <div class="flex items-center gap-2 text-zinc-400 font-mono text-xs">
+                <span>Based in Kazakhstan 🇰🇿</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CASE STUDY MODAL -->
+    <div id="case-study-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+        <div id="modal-content-wrapper" class="glass-panel max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-10 border border-white/15 relative transform scale-95 transition-all duration-300">
+            <button onclick="closeModal()" class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white rounded-full bg-white/5 hover:bg-white/15 transition-all">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div id="modal-body">
+                <!-- Dynamically populated project details -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT MODAL -->
+    <div id="contact-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+        <div id="contact-modal-wrapper" class="glass-panel max-w-md w-full rounded-3xl p-6 sm:p-8 border border-white/15 relative transform scale-95 transition-all duration-300">
+            <button onclick="closeContactModal()" class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white rounded-full bg-white/5 hover:bg-white/15 transition-all">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <h3 class="text-2xl font-bold text-white mb-2">Let's talk.</h3>
+            <p class="text-zinc-400 text-sm mb-6">Send me a direct message or project inquiry.</p>
+
+            <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono text-zinc-400 mb-1.5">YOUR NAME</label>
+                    <input type="text" required class="w-full bg-[#0f0f12] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rose-700 transition-colors" placeholder="Alex">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-zinc-400 mb-1.5">YOUR EMAIL / TELEGRAM</label>
+                    <input type="text" required class="w-full bg-[#0f0f12] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rose-700 transition-colors" placeholder="@username or email">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-zinc-400 mb-1.5">MESSAGE</label>
+                    <textarea rows="4" required class="w-full bg-[#0f0f12] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rose-700 transition-colors" placeholder="Tell me about your idea..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-rose-900 hover:bg-rose-800 text-white font-semibold py-3.5 rounded-xl transition-all shadow-lg shadow-rose-950/40 border border-rose-700/40">
+                    Send Message
+                </button>
+            </form>
+            <div id="form-success" class="hidden mt-4 p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-sm text-center font-medium">
+                Message sent successfully! I'll get back to you soon.
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMobileMenu(open) {
+            if (open) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', () => toggleMobileMenu(true));
+        mobileMenuClose.addEventListener('click', () => toggleMobileMenu(false));
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => toggleMobileMenu(false));
+        });
+
+        // Case Study Data Store
+        const projectsData = {
+            project1: {
+                title: "Travel App Concept",
+                category: "UX/UI Design",
+                overview: "A modern mobile app concept designed to simplify travel planning, itinerary management, and destination booking for young explorers.",
+                problem: "Traditional travel booking apps are often cluttered, complex, and lack modern aesthetic appeal, making trip planning feel like a chore rather than an exciting adventure.",
+                idea: "Create a minimalist, card-driven mobile interface with intuitive user flows, clear visual hierarchy, and instant access to key travel details.",
+                designProcess: "Started with quick sketching of user flows in Figma, moving into low-fidelity wireframes, and refining into a polished high-fidelity interactive prototype.",
+                wireframes: "Focused on thumb-friendly navigation, bottom action sheets, and modular destination cards that scale cleanly.",
+                finalUI: "Clean dark & rich burgundy contrast mode, soft emerald glows, rounded card components, and distraction-free typography.",
+                whatILearned: "I learned how crucial whitespace and card grouping are when designing content-heavy mobile dashboards."
+            },
+            project2: {
+                title: "Tourism Landing Page",
+                category: "Web Design",
+                overview: "A clean, responsive landing page concept for a modern travel brand, bridging university tourism insights with sleek digital design.",
+                problem: "Many tourism sites present dense information without engaging visual guidance or clear call-to-actions for travelers.",
+                idea: "Design an immersive landing page with bold typography, atmospheric gradient cards, and a streamlined booking conversion funnel.",
+                designProcess: "Conducted research on travel user behavior, designed desktop and mobile wireframes, and coded a responsive layout.",
+                wireframes: "Grid-based modular layout with clear hero section, feature breakdown, and destination showcases.",
+                finalUI: "Deep pitch black backdrop with rich burgundy and emerald accents, frosted glass cards, and crisp sans-serif typography.",
+                whatILearned: "Connecting my tourism studies with web design gave me deeper insight into how travelers search for visual inspiration."
+            },
+            project3: {
+                title: "Personal Dashboard",
+                category: "SaaS UI",
+                overview: "A SaaS-style productivity and analytics dashboard interface exploring layout structure, information density, and smooth micro-interactions.",
+                problem: "Dashboards often suffer from visual overload, making it difficult for users to track key metrics instantly.",
+                idea: "Build a modular SaaS dashboard with clean sidebar navigation, card stats, and an organized data layout.",
+                designProcess: "Sketched user information architecture, structured component states, and refined layout grids.",
+                wireframes: "Modular widget placement with collapsible sidebars and responsive grid scaling.",
+                finalUI: "Subtle glassmorphic panels, fine borders, status indicators, and clean tabular typography.",
+                whatILearned: "Mastering grid alignment and subtle borders is key to making SaaS interfaces look expensive and polished."
+            }
+        };
+
+        // Modal Controls
+        const modal = document.getElementById('case-study-modal');
+        const modalWrapper = document.getElementById('modal-content-wrapper');
+        const modalBody = document.getElementById('modal-body');
+
+        function openModal(projectId) {
+            const data = projectsData[projectId];
+            if (!data) return;
+
+            modalBody.innerHTML = `
+                <div class="mb-6">
+                    <span class="text-xs font-mono text-rose-400 uppercase tracking-widest">${data.category}</span>
+                    <h2 class="text-3xl font-bold text-white mt-1">${data.title}</h2>
+                </div>
+
+                <div class="space-y-6 text-zinc-300 text-sm sm:text-base">
+                    <div>
+                        <h4 class="text-xs font-mono text-rose-400 uppercase tracking-wider mb-2">01 — Overview</h4>
+                        <p class="text-zinc-300 leading-relaxed">${data.overview}</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                        <div class="p-5 rounded-2xl bg-white/5 border border-white/5">
+                            <h4 class="text-xs font-mono text-rose-400 uppercase tracking-wider mb-1">Problem</h4>
+                            <p class="text-zinc-400 text-sm leading-relaxed">${data.problem}</p>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-white/5 border border-white/5">
+                            <h4 class="text-xs font-mono text-emerald-400 uppercase tracking-wider mb-1">Idea</h4>
+                            <p class="text-zinc-400 text-sm leading-relaxed">${data.idea}</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-mono text-rose-400 uppercase tracking-wider mb-2">02 — Design Process</h4>
+                        <p class="text-zinc-300 leading-relaxed">${data.designProcess}</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-[#0f0f12] border border-white/10">
+                            <div class="text-xs font-mono text-emerald-400 mb-1">Wireframes</div>
+                            <p class="text-xs text-zinc-400">${data.wireframes}</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-[#0f0f12] border border-white/10">
+                            <div class="text-xs font-mono text-rose-400 mb-1">Final UI</div>
+                            <p class="text-xs text-zinc-400">${data.finalUI}</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-rose-950/25 border border-rose-900/40">
+                        <h4 class="text-xs font-mono text-rose-400 uppercase tracking-wider mb-1">What I Learned</h4>
+                        <p class="text-zinc-300 text-sm">${data.whatILearned}</p>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                modalWrapper.classList.remove('scale-95');
+                modalWrapper.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modalWrapper.classList.remove('scale-100');
+            modalWrapper.classList.add('scale-95');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'auto';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Contact Modal Controls
+        const contactModal = document.getElementById('contact-modal');
+        const contactModalWrapper = document.getElementById('contact-modal-wrapper');
+
+        function openContactModal() {
+            contactModal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                contactModalWrapper.classList.remove('scale-95');
+                contactModalWrapper.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            contactModalWrapper.classList.remove('scale-100');
+            contactModalWrapper.classList.add('scale-95');
+            contactModal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'auto';
+        }
+
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) closeContactModal();
+        });
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const successDiv = document.getElementById('form-success');
+            successDiv.classList.remove('hidden');
+            setTimeout(() => {
+                successDiv.classList.add('hidden');
+                closeContactModal();
+                e.target.reset();
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
